@@ -53,3 +53,26 @@ pipeline {
         }
     }
 }
+
+post {
+    always {
+        emailext (
+            to: 'celciaarockiadas@gmail.com',
+            subject: "Build ${currentBuild.currentResult}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: """Hello Celcia,
+
+Your Jenkins pipeline has finished running.
+
+Job Name: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Status: ${currentBuild.currentResult}
+
+You can view the full console output here:
+${env.BUILD_URL}
+
+Regards,
+Jenkins Automated Notification
+"""
+        )
+    }
+}

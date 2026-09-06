@@ -52,14 +52,13 @@ pipeline {
             }
         }
     }
-}
 
-post {
-    always {
-        emailext (
-            to: 'celciaarockiadas@gmail.com',
-            subject: "Build ${currentBuild.currentResult}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: """Hello Celcia,
+    post {
+        always {
+            emailext (
+                to: 'celciaarockiadas@gmail.com',
+                subject: "Build ${currentBuild.currentResult}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """Hello Celcia,
 
 Your Jenkins pipeline has finished running.
 
@@ -73,6 +72,7 @@ ${env.BUILD_URL}
 Regards,
 Jenkins Automated Notification
 """
-        )
+            )
+        }
     }
 }
